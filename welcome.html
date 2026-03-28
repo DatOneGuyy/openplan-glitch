@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome - OpenPlan</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/welcome.css">
+</head>
+<body class="welcome-page">
+    <!-- Parallax Background -->
+    <div class="parallax-container">
+        <div class="parallax-layer layer-circles">
+            <img src="/icons/circle.svg" class="parallax-item p-circle-1" alt="">
+            <img src="/icons/circle.svg" class="parallax-item p-circle-2" alt="">
+            <img src="/icons/circle.svg" class="parallax-item p-circle-3" alt="">
+        </div>
+        <div class="parallax-layer layer-clouds">
+            <img src="/icons/cloud.svg" class="parallax-item p-cloud-1" alt="">
+            <img src="/icons/cloud.svg" class="parallax-item p-cloud-2" alt="">
+            <img src="/icons/cloud.svg" class="parallax-item p-cloud-3" alt="">
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="welcome-content">
+        <header class="welcome-header">
+            <div class="logo">
+                <img src="/icons/openplan.svg" alt="OpenPlan">
+                <span>OpenPlan</span>
+            </div>
+            <div class="auth-actions">
+                <a href="/login" class="login-nav-btn">Log In</a>
+                <a href="/signup" class="signup-nav-btn">Sign Up</a>
+            </div>
+        </header>
+
+        <main class="welcome-main">
+            <div class="hero-text">
+                <h1>Design Your Dream Room</h1>
+                <p>AI-powered interior design at your fingertips.</p>
+            </div>
+
+            <div class="welcome-single-card-container">
+                <a href="/" class="welcome-card hero-card">
+                    <div class="card-icon"><img src="/icons/create.svg" alt=""></div>
+                    <span>Create New Room</span>
+                </a>
+            </div>
+        </main>
+
+        <footer class="welcome-footer">
+            <p>&copy; 2026 OpenPlan. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="js/welcome.js"></script>
+</body>
+</html>

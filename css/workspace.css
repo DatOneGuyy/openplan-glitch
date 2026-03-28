@@ -1,0 +1,41 @@
+/* Workspace */
+.workspace {
+    flex: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.canvas-area {
+    width: 669px;
+    height: 419px;
+    background-color: white;
+    box-shadow: 0px 4px 4px 5px rgba(0,0,0,0.05);
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.canvas-area img {
+    -webkit-user-drag: none;
+    user-drag: none;
+    pointer-events: none; /* Let clicks pass through to the SVG handles if for some reason the SVG overlay is obscured */
+}
+
+#maskOverlay {
+    pointer-events: none; /* Already set in initMasks JS, but good to reinforce or use children only */
+}
+
+#maskOverlay * {
+    pointer-events: auto; /* Ensure shapes/handles ARE clickable */
+}
+
+.mask-handle {
+    transition: r 0.15s ease, stroke-width 0.15s ease;
+}
+
+.mask-handle:hover {
+    r: 14; /* Swell slightly on hover for easier targeting */
+    stroke-width: 3;
+    cursor: grab;
+}

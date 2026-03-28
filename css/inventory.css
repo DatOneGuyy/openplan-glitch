@@ -1,0 +1,212 @@
+/* Inventory Panel (Right Sidebar) */
+.inventory-panel {
+    width: 288px;
+    background-color: var(--text-white);
+    border-left: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+}
+
+.inventory-header {
+    height: 81px;
+    padding: 16px 16px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
+}
+
+.inventory-header h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-dark);
+    line-height: 30px;
+}
+
+.inventory-subtitle {
+    font-size: 12px;
+    color: var(--text-gray);
+    line-height: 16px;
+}
+
+.inventory-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 24px;
+    overflow-y: auto;
+}
+
+.empty-inventory-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: auto;
+    gap: 0;
+}
+
+.empty-icon-circle {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background-color: var(--bg-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+}
+
+.empty-icon-circle img {
+    width: 32px;
+    height: 32px;
+}
+
+.empty-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-gray-dark);
+    line-height: 20px;
+    margin-bottom: 4px;
+}
+
+.empty-subtitle {
+    font-size: 12px;
+    color: var(--text-gray);
+    line-height: 16px;
+}
+
+/* Inventory Item Rows */
+.inventory-list {
+    display: none; /* Block when visible */
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 8px;
+}
+
+.inventory-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 8px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--bg-light);
+    gap: 12px;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+}
+
+.inventory-item:hover {
+    border-color: var(--primary-blue-light);
+}
+
+.inventory-item-thumbnail {
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+    object-fit: cover;
+    background-color: var(--text-white);
+    flex-shrink: 0;
+}
+
+.inventory-item-index {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: var(--primary-blue);
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-left: -14px; /* Pull it over the thumbnail slightly for a layered look */
+    margin-right: -4px;
+    border: 1.5px solid white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+
+.inventory-item-index.checked {
+    background-color: #22C55E !important; /* Success Green */
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.inventory-item-title {
+    flex: 1;
+    font-size: 13px;
+    color: var(--text-dark);
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.inventory-item-delete {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-gray);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    border-radius: 4px;
+    transition: color 0.2s, background-color 0.2s;
+    flex-shrink: 0;
+}
+
+.inventory-item-delete:hover {
+    color: #ef4444; /* red */
+    background-color: transparent;
+}
+
+.inventory-item-delete svg {
+    width: 14px;
+    height: 14px;
+}
+
+/* Spinner for individual items during generation */
+.inventory-item-spinner {
+    width: 14px;
+    height: 14px;
+    border: 2px solid var(--primary-blue-light);
+    border-radius: 50%;
+    border-top-color: var(--primary-blue);
+    animation: spin 0.8s linear infinite;
+    flex-shrink: 0;
+    margin: 4px;
+}
+
+.inventory-footer {
+    padding: 16px;
+    border-top: 1px solid var(--border-color);
+    margin-top: auto; /* Push to the very bottom of the sidebar */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.inventory-total {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-dark);
+    flex-shrink: 0;
+}
+
+#designRoomBtn {
+    flex: 1;
+    justify-content: center;
+}

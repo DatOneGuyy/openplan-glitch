@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenPlan - AI Interior Design</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/navigation.css">
+    <link rel="stylesheet" href="css/panels.css">
+    <link rel="stylesheet" href="css/workspace.css">
+    <link rel="stylesheet" href="css/furniture.css">
+    <link rel="stylesheet" href="css/inventory.css">
+    <link rel="stylesheet" href="css/modals.css">
+    <link rel="stylesheet" href="css/inspiration.css">
+    <link rel="stylesheet" href="css/customize.css">
+    <link rel="stylesheet" href="css/room.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Top Nav -->
+        <header class="topnav">
+            <div class="topnav-left">
+                <a href="/welcome" class="logo-link">
+                    <div class="logo-container">
+                        <img src="/icons/openplan.svg" alt="OpenPlan Logo" class="logo-icon">
+                        <span class="logo-text">OpenPlan</span>
+                    </div>
+                </a>
+                <div class="nav-divider"></div>
+                <div class="auth-container" id="authContainer">
+                    <a href="/login" class="upload-btn" id="loginTrigger">Log In</a>
+                    <a href="/signup" class="upload-btn" id="registerTrigger" style="margin: 0;">Sign Up</a>
+                </div>
+                <div class="user-status-container" id="userStatusContainer" style="display: none;">
+                    <div class="user-info">
+                        <img src="/icons/user.svg" alt="User" class="user-icon">
+                        <span id="welcomeText" class="welcome-text"></span>
+                    </div>
+                    <button class="upload-btn" id="logoutBtn" style="margin-left: 12px;">Logout</button>
+                </div>
+            </div>
+
+            <label for="room-upload" class="upload-btn">
+                <img src="/icons/upload.svg" alt="Upload" class="upload-icon">
+                Upload Room
+            </label>
+            <input type="file" id="room-upload" accept="image/*" style="display: none;">
+        </header>
+
+        <!-- Main Content (Sidebar + Workspace) -->
+        <div class="main-content">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <button class="sidebar-btn active" data-tooltip="Select">
+                    <img src="/icons/select.svg" alt="Select" class="sidebar-icon">
+                </button>
+                <button class="sidebar-btn" data-tooltip="Add">
+                    <img src="/icons/add.svg" alt="Add" class="sidebar-icon">
+                </button>
+                <button class="sidebar-btn" data-tooltip="Customize with Gemini">
+                    <img src="/icons/customize.svg" alt="Customize with Gemini" class="sidebar-icon">
+                </button>
+                <button class="sidebar-btn" data-tooltip="Inspiration">
+                    <img src="/icons/inspiration.svg" alt="Inspiration" class="sidebar-icon">
+                </button>
+
+                <!-- Bottom Aligned Section -->
+                <button class="sidebar-btn sidebar-bottom" data-tooltip="Room">
+                    <img src="/icons/file.svg" alt="Room" class="sidebar-icon">
+                </button>
+            </aside>
+
+            <!-- Room Settings (Hidden by Default) -->
+            <aside class="room-panel sidebar-panel" id="roomPanel">
+                <div class="sidebar-panel-header">
+                    <h2>Room Settings</h2>
+                </div>
+                <div class="room-options-grid">
+                    <button class="room-option-btn" id="createNewRoomBtn">
+                        <div class="room-option-icon">
+                            <img src="/icons/create.svg" alt="Create">
+                        </div>
+                        <span>Create New Room</span>
+                    </button>
+                    <button class="room-option-btn" id="saveRoomBtn">
+                        <div class="room-option-icon">
+                            <img src="/icons/save.svg" alt="Save">
+                        </div>
+                        <span>Save Room</span>
+                    </button>
+                    <button class="room-option-btn" id="myProjectsBtn">
+                        <div class="room-option-icon">
+                            <img src="/icons/projects.svg" alt="My Rooms">
+                        </div>
+                        <span>My Rooms</span>
+                    </button>
+                    <button class="room-option-btn" id="clearItemsBtn">
+                        <div class="room-option-icon">
+                            <img src="/icons/clear.svg" alt="Clear">
+                        </div>
+                        <span>Clear Items</span>
+                    </button>
+                    <button class="room-option-btn" id="exportRoomBtn">
+                        <div class="room-option-icon">
+                            <img src="/icons/export.svg" alt="Export">
+                        </div>
+                        <span>Export</span>
+                    </button>
+                </div>
+            </aside>
+
+            <!-- Furniture Browser (Hidden by Default) -->
+            <aside class="furniture-browser sidebar-panel" id="furnitureBrowser">
+                <div class="sidebar-panel-header">
+                    <h2>Add Furniture</h2>
+                    <button class="create-furniture-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="create-icon">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                        Create
+                    </button>
+                </div>
+
+                <hr class="browser-divider">
+
+                <div class="browser-search">
+                    <div class="search-input-wrapper">
+                        <img src="/icons/search.svg" alt="Search" class="search-icon">
+                        <input type="text" id="furnitureSearchInput" placeholder="Search furniture...">
+                    </div>
+                </div>
+
+                <div class="browser-categories">
+                    <button class="category-chip" data-category="Chairs">Chairs</button>
+                    <button class="category-chip" data-category="Sofas">Sofas</button>
+                    <button class="category-chip" data-category="Coffee Tables">Coffee Tables</button>
+                    <button class="category-chip" data-category="Side Tables">Side Tables</button>
+                    <button class="category-chip" data-category="Beds">Beds</button>
+                    <button class="category-chip" data-category="Dressers">Dressers</button>
+                    <button class="category-chip" data-category="Lighting">Lighting</button>
+                </div>
+
+                <div class="furniture-grid-container">
+                    <p class="results-count" id="resultsCount"></p>
+                    <div class="furniture-grid" id="furnitureGrid">
+                        <div class="empty-state"
+                            style="grid-column: 1 / -1; text-align: center; padding: 40px 20px; color: var(--text-gray); font-size: 14px;">
+                            Select a category or search to get started.
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Workspace -->
+            <main class="workspace">
+                <div class="canvas-area"></div>
+            </main>
+
+            <!-- Inventory Panel -->
+            <aside class="inventory-panel" id="inventoryPanel">
+                <div class="inventory-header">
+                    <h2>Items</h2>
+                    <p class="inventory-subtitle">0 items in room</p>
+                </div>
+                <div class="inventory-body">
+                    <div class="empty-inventory-state" id="emptyInventoryState">
+                        <div class="empty-icon-circle">
+                            <img src="/icons/empty-items.svg" alt="Empty Items">
+                        </div>
+                        <h3 class="empty-title">No items yet</h3>
+                        <p class="empty-subtitle">Add furniture to your room to see them listed here</p>
+                    </div>
+                    <div class="inventory-list" id="inventoryList"></div>
+                </div>
+                <div class="inventory-footer" id="inventoryFooter">
+                    <div class="inventory-total" id="inventoryTotal">Total: $0.00</div>
+                    <button class="upload-btn" id="designRoomBtn" style="border: none; cursor: pointer;">
+                        <img src="/icons/openplan.svg" alt="Design" class="upload-icon">
+                        Design
+                    </button>
+                </div>
+            </aside>
+
+
+            <!-- Inspiration Area (Slide-out Sidebar) -->
+            <aside class="inspiration-area sidebar-panel" id="inspirationArea">
+                <div class="sidebar-panel-header">
+                    <h2>Design Inspiration</h2>
+                </div>
+                <div class="inspiration-search">
+                    <div class="search-input-wrapper">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="search-icon">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <input type="text" placeholder="Search styles...">
+                    </div>
+                </div>
+                <div class="inspiration-chips">
+                    <button class="inspiration-chip">Modernism</button>
+                    <button class="inspiration-chip">Baroque</button>
+                    <button class="inspiration-chip">Cottagecore</button>
+                    <button class="inspiration-chip">Minimalist</button>
+                    <button class="inspiration-chip">Industrial</button>
+                </div>
+                <div class="inspiration-grid" id="inspirationGrid">
+                    <!-- Column 1 -->
+                    <div class="masonry-column">
+                        <div class="masonry-item"><img src="inspiration/Image__Modern_Minimalist_Living_.png"
+                                alt="Inspiration"></div>
+                        <div class="masonry-item"><img src="inspiration/image_6.png" alt="Inspiration"></div>
+                        <div class="masonry-item"><img src="inspiration/image_7.png" alt="Inspiration"></div>
+                        <div class="masonry-item"><img src="inspiration/Image__Rustic_Farmhouse_Dining_.png"
+                                alt="Inspiration"></div>
+                        <div class="masonry-item"><img src="inspiration/Image__Minimalist_Kitchen_.png"
+                                alt="Inspiration"></div>
+                        <div class="masonry-item"><img src="inspiration/Image__Industrial_Loft_.png" alt="Inspiration">
+                        </div>
+                        <div class="masonry-item"><img src="inspiration/image_8.png" alt="Inspiration"></div>
+                        <div class="masonry-item"><img src="inspiration/Image__Elegant_Dining_Room_.png"
+                                alt="Inspiration"></div>
+                        <div class="masonry-item"><img src="inspiration/image_10.png" alt="Inspiration"></div>
+                        <div class="masonry-item"><img src="inspiration/Image__Bohemian_Bedroom_.png" alt="Inspiration">
+                        </div>
+                        <div class="masonry-item"><img src="inspiration/Image__Plant-Filled_Sunroom_.png"
+                                alt="Inspiration"></div>
+                        <div class="masonry-item"><img src="inspiration/Image__Open_Concept_Kitchen_.png"
+                                alt="Inspiration"></div>
+                    </div>
+                    <!-- Column 2 -->
+                    <div class="masonry-column">
+                        <div class="masonry-item"><img src="inspiration/Image__Baroque_Elegance_.png" alt="Inspiration">
+                        </div>
+                        <div class="masonry-item"><img src="inspiration/Image__Vintage_Furniture_Styling_.png"
+                                alt="Inspiration"></div>
+                        <div class="masonry-item"><img src="inspiration/Image__Scandinavian_Bedroom_.png"
+                                alt="Inspiration"></div>
+                        <div class="masonry-item"><img src="inspiration/Image__Mid-Century_Modern_.png"
+                                alt="Inspiration"></div>
+                        <div class="masonry-item"><img src="inspiration/image_9.png" alt="Inspiration"></div>
+                        <div class="masonry-item"><img src="inspiration/Image__Contemporary_Apartment_.png"
+                                alt="Inspiration"></div>
+                        <div class="masonry-item"><img src="inspiration/Image__Cozy_Reading_Nook_.png"
+                                alt="Inspiration"></div>
+                        <div class="masonry-item"><img src="inspiration/Image__Modern_Bathroom_.png" alt="Inspiration">
+                        </div>
+                        <div class="masonry-item"><img src="inspiration/Image__Modern_Office_Workspace_.png"
+                                alt="Inspiration"></div>
+                        <div class="masonry-item"><img src="inspiration/Image__Modern_Entryway_.png" alt="Inspiration">
+                        </div>
+                        <div class="masonry-item"><img src="inspiration/Image__Luxury_Bedroom_.png" alt="Inspiration">
+                        </div>
+                        <div class="masonry-item"><img src="inspiration/Image__Cozy_Fireplace_Living_.png"
+                                alt="Inspiration"></div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Customize Tab (Hidden by Default) -->
+            <aside class="customize-area sidebar-panel" id="customizeArea">
+                <div class="sidebar-panel-header">
+                    <h2>Customize with Gemini</h2>
+                </div>
+
+                <div class="customize-content" id="customizeContent">
+                    <!-- Default state when no image is uploaded -->
+                    <div id="customizeEmptyState" class="empty-state">
+                        <p>Upload an image to start customizing.</p>
+                    </div>
+
+                    <!-- Gemini Analysis Results (Hidden by Default) -->
+                    <div id="customizeResults" class="customize-results" style="display: none;">
+                        <div class="section-card">
+                            <div class="analysis-section" id="analysisSection">
+                                <h3>Room Analysis</h3>
+                                <p id="analysisSummary"></p>
+                            </div>
+                        </div>
+                        <div class="suggestions-section">
+                            <h3>Suggestions</h3>
+                            <div id="suggestionsContainer"></div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+        </div>
+    </div>
+
+    <!-- Generic Dialog Modal (Alert/Confirm) -->
+    <div class="modal-overlay" id="dialogModal">
+        <div class="modal-content glass-modal" style="width: 360px;">
+            <div class="modal-header" style="border-bottom: none; padding-bottom: 8px;">
+                <h3 id="dialogTitle">Confirm Action</h3>
+            </div>
+            <div class="modal-body" style="padding-top: 0; padding-bottom: 24px;">
+                <p id="dialogMessage"
+                    style="font-size: 14px; color: var(--text-gray-dark); line-height: 1.5; margin: 0;"></p>
+            </div>
+            <div class="modal-footer" id="dialogFooter"
+                style="border-top: 1px solid var(--border-color); padding: 16px 24px; gap: 12px; justify-content: flex-end;">
+                <button class="category-chip" id="dialogCancelBtn"
+                    style="margin: 0; padding: 10px 20px;">Cancel</button>
+                <button class="upload-btn" id="dialogConfirmBtn"
+                    style="margin: 0; padding: 10px 20px; min-width: 100px; justify-content: center;">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Custom Furniture Modal -->
+    <div class="modal-overlay" id="createFurnitureModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Create Custom Furniture</h3>
+                <button class="inventory-item-delete" id="closeCreateModalBtn" aria-label="Close modal">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <label for="customFurnitureFile" class="modal-upload-area" id="modalUploadArea">
+                    <img src="/icons/upload.svg" alt="Upload" class="modal-upload-icon">
+                    <span class="modal-upload-prompt">Click to upload image</span>
+                </label>
+                <div id="customFurnitureImageError" class="modal-error-text"
+                    style="text-align: center; margin-bottom: 8px;">Image is required</div>
+                <input type="file" id="customFurnitureFile" accept="image/*" style="display: none;">
+
+                <div class="modal-preview-container" id="modalPreviewContainer" style="display: none;">
+                    <img src="" alt="Furniture Preview" id="customFurniturePreview" class="modal-preview-img">
+                </div>
+
+                <div class="modal-input-group">
+                    <label for="customFurnitureTitle">Item Name</label>
+                    <input type="text" id="customFurnitureTitle" placeholder="Enter furniture name...">
+                    <div id="customFurnitureTitleError" class="modal-error-text">Item name is required</div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="upload-btn" id="submitCustomFurnitureBtn"
+                    style="width: 100%; justify-content: center;">Add to Room</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="projectsModal">
+        <div class="modal-content glass-modal" style="width: 800px; max-width: 90vw; height: 600px; max-height: 80vh;">
+            <div class="modal-header">
+                <h3>My Rooms</h3>
+                <button class="inventory-item-delete" id="closeProjectsModalBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body" style="overflow-y: auto;">
+                <div id="projectsGrid" class="projects-grid">
+                    <!-- Projects will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="js/main.js"></script>
+</body>
+
+</html>

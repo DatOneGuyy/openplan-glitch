@@ -1,0 +1,90 @@
+/* Sidebar Navigation Icons */
+.sidebar {
+    width: 64px;
+    background-color: white;
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px 0;
+    gap: 4px;
+    flex-shrink: 0;
+}
+
+.sidebar-btn {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.sidebar-bottom {
+    margin-top: auto;
+}
+
+/* Tooltip styling attached via data-tooltip */
+.sidebar-btn::before {
+    content: ""; /* Invisible hit area bridge if needed, skipping for now */
+}
+
+.sidebar-btn::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: 100%;
+    margin-left: 14px;
+    background-color: var(--text-dark);
+    color: var(--text-white);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    transform: translateX(-4px);
+    z-index: 100;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-btn:not(.disabled):hover::after {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.sidebar-btn:hover:not(.active):not(.disabled) {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.sidebar-btn.active {
+    background-color: var(--primary-blue-light);
+}
+
+.sidebar-btn.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.sidebar-icon {
+    width: 20px;
+    height: 20px;
+    transition: filter 0.2s ease;
+}
+
+/* Force unselected sidebar icons to pure black */
+.sidebar-btn:not(.active) .sidebar-icon {
+    filter: brightness(0) saturate(100%) !important;
+}
+
+/* Force active sidebar icons to primary blue (#4181f0) */
+.sidebar-btn.active .sidebar-icon {
+    filter: brightness(0) saturate(100%) invert(46%) sepia(61%) saturate(2250%) hue-rotate(205deg) brightness(97%) contrast(93%) !important;
+}

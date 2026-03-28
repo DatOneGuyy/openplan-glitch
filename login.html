@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In - OpenPlan</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/auth_pages.css">
+</head>
+<body class="auth-page">
+    <div class="auth-card">
+        <a href="/" class="auth-logo">
+            <img src="/icons/openplan.svg" alt="OpenPlan" style="width: 32px; height: 32px;">
+            <span class="auth-logo-text">OpenPlan</span>
+        </a>
+        
+        <div class="auth-header">
+            <h1>Welcome Back</h1>
+            <p>Sign in to continue designing your dream room.</p>
+        </div>
+
+        <div class="auth-form">
+            <div class="auth-input-group">
+                <label for="loginUsername">Username</label>
+                <input type="text" id="loginUsername" placeholder="Enter your username" required>
+            </div>
+            <div class="auth-input-group">
+                <label for="loginPassword">Password</label>
+                <input type="password" id="loginPassword" placeholder="Enter your password" required>
+            </div>
+            <div id="loginError" class="auth-error"></div>
+            <button class="upload-btn" id="loginSubmitBtn" style="width: 100%; height: 48px; justify-content: center; font-size: 16px;">Log In</button>
+        </div>
+
+        <div class="auth-footer">
+            Don't have an account? <a href="/signup">Sign Up</a>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initAuthPage } from './js/auth.js';
+        document.addEventListener('DOMContentLoaded', () => {
+            initAuthPage('login');
+        });
+    </script>
+</body>
+</html>

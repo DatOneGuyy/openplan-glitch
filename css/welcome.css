@@ -1,0 +1,222 @@
+/* welcome.css */
+
+.welcome-page {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: #fcfdfe;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    color: var(--text-dark);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Parallax Layers */
+.parallax-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.parallax-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.1s ease-out;
+}
+
+.parallax-item {
+    position: absolute;
+    opacity: 1.0;
+}
+
+/* Specific Positions for Circles and Clouds */
+.p-circle-1 {
+    top: 15%;
+    left: 10%;
+    width: 120px;
+}
+
+.p-circle-2 {
+    top: 65%;
+    left: 80%;
+    width: 200px;
+}
+
+.p-circle-3 {
+    top: 10%;
+    left: 75%;
+    width: 150px;
+}
+
+.p-cloud-1 {
+    top: 25%;
+    left: 15%;
+    width: 280px;
+}
+
+.p-cloud-2 {
+    top: 75%;
+    left: 10%;
+    width: 220px;
+}
+
+.p-cloud-3 {
+    top: 30%;
+    left: 85%;
+    width: 320px;
+}
+
+/* Main Content Layout */
+.welcome-content {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.welcome-header {
+    height: 72px;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.welcome-header .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 800;
+    font-size: 18px;
+    color: black;
+}
+
+.welcome-header .logo img {
+    width: 32px;
+    height: 32px;
+}
+
+.auth-actions {
+    display: flex;
+    gap: 16px;
+}
+
+.login-nav-btn {
+    padding: 10px 24px;
+    border-radius: 12px;
+    background: var(--primary-blue-soft);
+    border: 1px solid var(--primary-blue-soft-border);
+    color: var(--primary-blue);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.signup-nav-btn {
+    padding: 10px 24px;
+    border-radius: 12px;
+    background: var(--primary-blue);
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+/* Main Area */
+.welcome-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 40px;
+    gap: 40px;
+}
+
+.hero-text {
+    text-align: center;
+}
+
+.hero-text h1 {
+    font-size: 48px;
+    font-weight: 800;
+    margin-bottom: 12px;
+    letter-spacing: -0.03em;
+}
+
+.hero-text p {
+    font-size: 18px;
+    color: var(--text-gray);
+    margin: 0;
+}
+
+/* Single Hero Card Layout */
+.welcome-single-card-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.welcome-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    width: 280px;
+    height: 180px;
+    background-color: var(--primary-blue-soft);
+    border: 1px solid var(--primary-blue-soft-border);
+    border-radius: 24px;
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 700;
+    font-size: 16px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(65, 129, 240, 0.04);
+}
+
+.welcome-card .card-icon {
+    width: 56px;
+    height: 56px;
+    background: white;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(65, 129, 240, 0.08);
+}
+
+.welcome-card .card-icon img {
+    width: 28px;
+    height: 28px;
+}
+
+.welcome-card:hover {
+    background-color: var(--primary-blue-soft-hover);
+    border-color: var(--primary-blue-soft-border-hover);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(65, 129, 240, 0.08);
+}
+
+.welcome-footer {
+    height: 60px;
+    text-align: center;
+    color: var(--text-gray);
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

@@ -1,0 +1,97 @@
+.inspiration-search {
+    padding: 0 24px 16px;
+}
+
+.inspiration-search .search-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.inspiration-search .search-icon {
+    position: absolute;
+    left: 14px;
+    width: 16px;
+    height: 16px;
+    opacity: 0.5;
+    pointer-events: none;
+    color: var(--text-dark); /* Ensure icon color is consistent */
+}
+
+.inspiration-search input {
+    width: 100%;
+    padding: 10px 16px 10px 38px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-light);
+    font-size: 14px;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.2s, background-color 0.2s;
+    color: var(--text-dark);
+}
+
+.inspiration-search input:focus {
+    border-color: var(--primary-blue);
+    background-color: var(--text-white);
+}
+
+.inspiration-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 0 24px 16px;
+}
+
+.inspiration-chip {
+    padding: 8px 16px;
+    border-radius: 20px;
+    background-color: var(--bg-light);
+    border: none;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-dark);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s;
+}
+
+.inspiration-chip:hover:not(.active) {
+    background-color: #e5e5e5;
+}
+
+.inspiration-chip.active {
+    background-color: var(--primary-blue);
+    color: white;
+}
+
+/* Masonry Grid (2 Columns) */
+.inspiration-grid {
+    display: flex;
+    gap: 10px;
+    padding: 0 24px 24px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.masonry-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.masonry-item {
+    width: 100%;
+    flex-shrink: 0; /* Prevent squashing in flex column */
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: var(--bg-light);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.masonry-item img {
+    width: 100%;
+    height: auto; /* Ensure aspect ratio is maintained */
+    display: block;
+}
